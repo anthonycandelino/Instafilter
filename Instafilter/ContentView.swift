@@ -75,9 +75,9 @@ struct ContentView: View {
                 HStack {
                     Button("Change Filter", action: changeFilter)
                         .disabled(selectedItem == nil)
-
+                    
                     Spacer()
-
+                    
                     if let processedImage {
                         ShareLink(item: processedImage, preview: SharePreview("Instafilter Image", image: processedImage))
                     }
@@ -123,9 +123,6 @@ struct ContentView: View {
         if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey)}
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(filterRadius * 200, forKey: kCIInputRadiusKey)}
         if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(filterScale * 30, forKey: kCIInputScaleKey)}
-        
-        
-        
         
         guard let outputImage = currentFilter.outputImage else { return }
         guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else { return }
